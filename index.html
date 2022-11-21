@@ -44,12 +44,12 @@
             </label> -->
             
             <div>
-                <input type="file" id="fileUploader" class="fileUploader" accept="pdf" name="file" />
+                <input type="file" id="fileUploader" class="fileUploader" onchange="checkfile(this)" name="file" />
                 <div id="upload_zone" class="upload_zone">
                         
                     <img src="/img/upload.png">
                     <p>上傳文件以開始簽署<br>拖曳檔案或點擊此處上傳</p>
-                    <p>檔案支援：PDF</p>
+                    <p>檔案支援：PDF <br>檔案大小限制：10MB</p>
                     <img src="/img/picture_as_pdf.png">
                 </div>
             </div>
@@ -126,7 +126,7 @@
         </div> -->
         <a class="start-btn btn" href="#" onclick="tofuncsign()">開始</a>
         <label>
-            <input type="file"><p>重新上傳文件</p>
+            <input type="file"><a href="https://yuniverses.github.io/">重新上傳文件</a>
         </label>
     </div>
     </div>
@@ -261,7 +261,7 @@
   <div class="main Complet">
       <canvas class="put" id="pdf-edit" style="border-radius: 10pt; "></canvas>
 
-      <div class="filecontrol-Complet closeshow">
+      <div class="filecontrol-Complet closeshow style="z-index: 999;">
         <div class="selectintro">
           <h2>已成功完成簽署</h2>
           <p>請盡快下載簽署完的檔案，關閉此網頁後檔案將不會保留。</p>
@@ -324,7 +324,7 @@
       </ul>
   </div>
   <div class="main">
-    <div class="filecontrol closeshow">
+    <div class="filecontrol closeshow" style="z-index: 999;">
         <div class="selectintro">
           <h2>已成功完成簽署～</h2>
           <p>請盡快下載簽署完的檔案，關閉此網頁後檔案將不會保留。</p>
@@ -334,7 +334,7 @@
             <img src="">
         </div>
         <div class="name-edit">
-          <input id="file-rename" type="text" placeholder="點擊修改檔案名稱" value="ddsign">
+          <input id="file-rename" type="text" placeholder="點擊修改檔案名稱" value="ddsign" onfocus="this.select();">
           <span class="material-symbols-outlined">edit</span>
         </div>
       </div>

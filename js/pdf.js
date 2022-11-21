@@ -6,27 +6,42 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "./js/pdfworker.js";
 
 // 使用原生 FileReader 轉檔
 function readBlob(blob) {
-  //限制大小
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.addEventListener("load", () => resolve(reader.result));
+    reader.addEventListener("error", reject);
+    reader.readAsDataURL(blob);
+  });  
+}
+
+
+
+
+
+// 限制檔案
+function checkfile(sender) {
+
+  // 可接受的附檔名
+  var validExts = new Array(".pdf");
   const file = document.getElementById('fileUploader').files[0]
   const fileMaxSize = 10485760
-    if (file.size > fileMaxSize) {
-      alert('檔案大小限制10MB');
-    } 
-    else {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.addEventListener("load", () => resolve(reader.result));
-        reader.addEventListener("error", reject);
-        reader.readAsDataURL(blob);
-        //上傳後從首頁切換到確認頁面
-        var x = document.getElementById("index");
-            x.style.display = "none";
-            var x = document.getElementById("file-preview");
-            x.style.display = "flex";
-            var x = document.getElementById("func-sign");
-            x.style.display = "none";
-      });  
-    }
+  var fileExt = sender.value;
+  fileExt = fileExt.substring(fileExt.lastIndexOf('.'));
+  if (validExts.indexOf(fileExt) < 0 || file.size > fileMaxSize) {
+    alert("檔案類型或大小錯誤，目前只接受小於10MB的" + validExts.toString()+"上傳" );
+    sender.value = null;
+    return false;
+  }
+  else{
+    //上傳後從首頁切換到確認頁面
+    var x = document.getElementById("index");
+    x.style.display = "none";
+    var x = document.getElementById("file-preview");
+    x.style.display = "flex";
+    var x = document.getElementById("func-sign");
+    x.style.display = "none";
+    return true;
+  } 
 }
 
 async function printPDF(pdfData) {
@@ -167,3 +182,5 @@ download.addEventListener("click", () => {
   pdff.addImage(image, "png", 0, 0, width, height);
   pdff.save($("#file-rename").val()+".pdf");
 });
+
+//修改檔名全選
