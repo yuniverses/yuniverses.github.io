@@ -1,24 +1,32 @@
 const Base64Prefix = "data:application/pdf;base64,";
 const add = document.querySelector(".add");
-pdfjsLib.GlobalWorkerOptions.workerSrc = "https://mozilla.github.io/pdf.js/build/pdf.worker.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "./js/pdfworker.js";
 
 
 
 // 使用原生 FileReader 轉檔
 function readBlob(blob) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () => resolve(reader.result));
-    reader.addEventListener("error", reject);
-    reader.readAsDataURL(blob);
-    //上傳後從首頁切換到確認頁面
-    var x = document.getElementById("index");
-        x.style.display = "none";
-        var x = document.getElementById("file-preview");
-        x.style.display = "flex";
-        var x = document.getElementById("func-sign");
-        x.style.display = "none";
-  });
+  //限制大小
+  const file = document.getElementById('fileUploader').files[0]
+  const fileMaxSize = 10485760
+    if (file.size > fileMaxSize) {
+      alert('檔案大小限制10MB');
+    } 
+    else {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.addEventListener("load", () => resolve(reader.result));
+        reader.addEventListener("error", reject);
+        reader.readAsDataURL(blob);
+        //上傳後從首頁切換到確認頁面
+        var x = document.getElementById("index");
+            x.style.display = "none";
+            var x = document.getElementById("file-preview");
+            x.style.display = "flex";
+            var x = document.getElementById("func-sign");
+            x.style.display = "none";
+      });  
+    }
 }
 
 async function printPDF(pdfData) {
@@ -81,6 +89,8 @@ document.querySelector("input").addEventListener("change", async (e) => {
 });
 
 
+
+
 // 加入簽名
 const sign = document.querySelector(".sign");
 if (localStorage.getItem("img")) {
@@ -91,8 +101,8 @@ sign.addEventListener("click", () => {
   if (!sign.src) return;
   fabric.Image.fromURL(sign.src, function (image) {
     image.top = 400;
-    image.scaleX = 0.5;
-    image.scaleY = 0.5;
+    image.scaleX = 0.7;
+    image.scaleY = 0.7;
     canvasp3.add(image);
   });
 });

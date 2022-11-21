@@ -1,6 +1,9 @@
 const dropbox = document.getElementById("upload_zone");
     const preview = document.getElementById("preview");
 
+    //限制大小
+
+
     function handleFileSelect(e) {
         e.stopPropagation();
         e.preventDefault();

@@ -278,6 +278,7 @@ a{
     height: 100%;
     width: 200pt;
     padding: 50pt;
+    z-index: 999;
 }
 
 .selectintro{
@@ -310,7 +311,7 @@ a{
 #next-page span{
     margin-left: 10pt;
 } 
-.tool-bar{
+.tool{
     opacity: 50%;
 }
 .choose{
@@ -333,6 +334,8 @@ a{
 .Complet{
     display: flex;
     flex-direction: row;
+    max-width: fit-content;
+    align-items: center;
 }
 
 .filecontrol-Complet{
@@ -342,8 +345,10 @@ a{
     justify-content: space-around;
     align-items: center; 
     border-radius: 14px;
-    height: 45em;
+    height: 25em;
+    padding: 30pt 0;
     width: 40%;
+    z-index: 999;
 }
 
 .filecontrol-Complet .button{
