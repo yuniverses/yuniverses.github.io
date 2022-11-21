@@ -10,5 +10,5 @@
 - 可直接修改輸出時的檔案名稱
 
 #使用技術
-canvas
-jquery
+- canvas
+- jquery
