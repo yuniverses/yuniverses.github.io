@@ -161,11 +161,11 @@
         </ul>
     </div>
     <div class="main">
-        <dialog id="pdf-preview-dialog" >
+        <dialog id="pdf-preview-dialog" style="z-index: 900;">
             <canvas id="pdf-preview" style="border: 0px solid #000"></canvas>
         </dialog>
       <div class="pdf-preview-box">
-        <button id="pdf-show-btn"><span class="material-symbols-outlined">arrow_circle_right</span>預覽文件</button>
+        <button id="pdf-show-btn" style="z-index: 999;"><span class="material-symbols-outlined">arrow_circle_right</span>預覽文件</button>
         <button style="display: none;" id="pdf-close-btn"><span class="material-symbols-outlined" style="display: block;">cancel</span></button>
         <div class="pdf-preview" ><canvas id="pdf-preview" style="border: 0px solid #000"></canvas></div>
       </div>
