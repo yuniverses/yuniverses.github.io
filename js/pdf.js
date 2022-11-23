@@ -1,6 +1,6 @@
 const Base64Prefix = "data:application/pdf;base64,";
 const add = document.querySelector(".add");
-pdfjsLib.GlobalWorkerOptions.workerSrc = "./js/pdfworker.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc = "https://mozilla.github.io/pdf.js/build/pdf.worker.js";
 
 
 
