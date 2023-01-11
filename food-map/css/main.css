@@ -1,0 +1,365 @@
+@charset "UTF-8";
+/* 樣式集 VV*/
+.tit1 {
+  font-size: 16pt;
+  font-family: "Noto sans TC", sans-serif;
+}
+
+.tit2 {
+  font-size: 14px;
+  font-family: "Noto sans TC", sans-serif;
+}
+
+.tit3 {
+  font-size: 12px;
+  font-family: "Noto sans TC", sans-serif;
+}
+
+.blod {
+  font-weight: 600;
+}
+
+.p1 {
+  font-size: 10pt;
+  font-family: "Noto sans TC", sans-serif;
+}
+
+.p2 {
+  font-size: 8pt;
+  font-family: "Noto sans TC", sans-serif;
+  font-weight: 600;
+}
+
+#map {
+  height: 100%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+
+.container {
+  position: relative;
+  z-index: 200;
+}
+
+canvas {
+  font-family: "Mochiy Pop P One", sans-serif;
+}
+
+#infoModal {
+  position: absolute;
+  border-radius: 10pt;
+  padding: 10pt;
+}
+#infoModal button {
+  padding: 5pt 10pt;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.main .left {
+  width: 40%;
+  height: 500pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main .left .top {
+  margin-left: 10vw;
+}
+.main .left .top p {
+  margin-bottom: 15pt;
+}
+.main .left .bottom {
+  margin-left: 10vw;
+}
+.main .left .bottom .tit1 {
+  letter-spacing: 8pt;
+  margin-bottom: 15pt;
+  color: #cfcfcf;
+}
+.main .right {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.main .right #randombtn button {
+  background: none;
+  border: none;
+}
+.main .right #typesearch {
+  background-color: #888888;
+  padding: 8pt;
+  border: none;
+  border-radius: 10pt;
+  color: #dedede;
+}
+.main .right #typesearch button {
+  width: 10pt;
+}
+.main .right #typesearch::-webkit-input-placeholder {
+  color: #cfcfcf;
+}
+.main .right .btnbox {
+  margin: 10pt;
+  width: 200pt;
+  height: 200pt;
+  padding: 30pt;
+  border-radius: 20pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #101010;
+  transition: all 2s;
+}
+.main .right .btnbox h1 {
+  color: #dedede;
+}
+.main .right .btnbox p {
+  color: #888888;
+}
+.main .right .btnbox img {
+  transition: all 0.5s;
+}
+.main .right .btnbox .searchbar {
+  display: flex;
+  flex-direction: row;
+  background-color: #888888;
+  padding: 2pt;
+  border: none;
+  border-radius: 10pt;
+  align-items: center;
+}
+.main .right .btnbox .searchbar button {
+  border: none;
+  border-radius: 10pt;
+  background: none;
+  color: #dedede;
+}
+.main .right .btnbox:hover {
+  transition: all 0.5s;
+  background-color: #1e1e1e;
+}
+.main .right .btnbox:hover .star {
+  transition: all 0.5s;
+  scale: 1.2;
+  transform: rotate(180deg);
+}
+.main .right .btnbox .tag {
+  border: none;
+  padding: 5pt;
+  border-radius: 5pt;
+  background-color: #888888;
+  color: #dedede;
+  cursor: pointer;
+}
+
+.loding {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+}
+
+#result {
+  width: 100vw;
+  height: 100vh;
+  background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#result .h {
+  display: flex;
+  flex-direction: row;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  height: 75vh;
+}
+
+#restaurantLi {
+  height: 100%;
+  background-color: #101010;
+  width: 300pt;
+  padding: 0 20pt;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 20pt;
+}
+#restaurantLi img {
+  width: 150pt;
+  height: 150pt;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20pt;
+  margin-right: 20pt;
+  margin-top: 60pt;
+}
+#restaurantLi .list {
+  width: 130pt;
+  height: 150pt;
+  margin-top: 60pt;
+  display: flex;
+  flex-direction: column;
+  padding: 10pt 0;
+  justify-content: space-around;
+}
+#restaurantLi .list h1 {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  color: #dedede;
+  font-size: 15pt;
+  line-height: 20pt;
+}
+#restaurantLi .list .list2 {
+  display: flex;
+  flex-direction: row;
+}
+#restaurantLi .list .list2 p {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 50%;
+}
+#restaurantLi .list .list2 a {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+#restaurantLi .list .list2 img {
+  margin: 0;
+  width: 15pt;
+  height: 15pt;
+}
+#restaurantLi .tit {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  width: 300pt;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #101010;
+  padding: 20pt 0;
+}
+#restaurantLi .tit h1 {
+  font-size: 20pt;
+  color: #dedede;
+}
+#restaurantLi .tit a {
+  color: #888888;
+}
+
+.randomLi {
+  width: 300pt;
+  background-color: #101010;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 25pt;
+  margin-right: 5vw;
+}
+.randomLi .foodimg {
+  margin-bottom: 10pt;
+  width: 280pt;
+  height: 280pt;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20pt;
+}
+.randomLi h1 {
+  color: #dedede;
+  display: flex;
+  flex-direction: row;
+  font-size: 20pt;
+  font-weight: 800;
+  flex-wrap: wrap;
+  margin: 20pt 0;
+}
+.randomLi span {
+  color: #f27852;
+  margin: 0;
+  text-decoration: underline;
+}
+.randomLi .info {
+  background-color: rgb(29, 29, 29);
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10pt 20pt;
+  border-radius: 15pt;
+}
+.randomLi .info .star {
+  background-color: #101010;
+  padding: 8pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15pt;
+}
+.randomLi .info .infoleft {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+.randomLi .info .infoleft p {
+  color: #dedede;
+}
+.randomLi .info .infoleft a {
+  color: #000000;
+  background-color: #888888;
+  padding: 3pt 6pt;
+  border-radius: 10pt;
+}
+.randomLi .resultbtn {
+  margin-top: 30pt;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.randomLi .resultbtn .redobtn {
+  cursor: pointer;
+  background-color: #f27852;
+  width: 80%;
+  height: 40pt;
+  border: none;
+  border-radius: 10pt;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.randomLi .resultbtn .redobtn p {
+  color: #dedede;
+  font-size: large;
+  margin-left: 15pt;
+}
+.randomLi .resultbtn .sharebtn {
+  cursor: pointer;
+  border: none;
+  width: 15%;
+  background: none;
+  margin-left: 5%;
+}/*# sourceMappingURL=main.css.map */

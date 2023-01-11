@@ -1,0 +1,249 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery随机点餐代码 - www.bootstrapmb.com</title>
+  </head>
+  <style>
+    body {
+      background: #ef4009c2;
+    }
+
+    .main {
+      width: 660px;
+      height: 760px;
+      margin: 80px auto;
+    }
+
+    .button {
+      height: 100px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 58px;
+      position: relative;
+      top: 210px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .name {
+      position: relative;
+      top: 300px;
+      height: 100px;
+      color: #9fc;
+      font-weight: bold;
+      font-size: 58px;
+      text-align: center;
+    }
+
+    ul li {
+      display: inline;
+      list-style: none;
+      line-height: 30px;
+    }
+
+    .types {
+      margin: 0 20px;
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 30px;
+      text-align: center;
+      cursor: pointer;
+      height: 150px;
+      line-height: 150px;
+    }
+
+    .checked {
+      background: cornflowerblue;
+      padding: 20px;
+    }
+
+    .tips {
+      text-align: center;
+      color: #ffffff;
+      line-height: 50px;
+      font-size: 30px;
+      margin-top: 200px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="./js/jquery.js"></script>
+
+  <body>
+    <div class="main">
+      <ul>
+        <li class="types all" data-index="0">全部</li>
+        <li class="types aa" data-index="1">简餐</li>
+        <li class="types bb" data-index="2">饮品</li>
+        <li class="types cc" data-index="3">麻辣鲜香</li>
+        <li class="types dd" data-index="4">甜点</li>
+      </ul>
+      <div class="button"><span>开始</span></div>
+      <div class="name"><span id="ko">随机名称</span></div>
+    </div>
+    <div class="tips">
+      如果您点击超过十次还没有选到满意的菜单，也许在你心里面早已有答案。遵循自己的内心吧~！
+    </div>
+
+    <script>
+      a1 = [
+        "烩面",
+        "麻辣烫",
+        "酸辣粉",
+        "食堂",
+        "煲仔饭",
+        "鱼香肉丝盖饭",
+        "鸡公煲",
+        "热干面",
+        "蒸饺+混沌",
+        "土豆粉",
+        "拌面",
+        "汉堡+炸鸡",
+        "烩菜",
+        "羊肉泡馍",
+        "煎饼果子",
+        "螺蛳粉",
+        "米线",
+        "肠粉",
+        "凉皮",
+        "擀面皮",
+        "爆肚",
+        "肉夹馍",
+        "炒饭",
+        "饭团",
+        "卤肉饭",
+        "渔粉",
+        "焖面",
+        "煎包",
+        "粥+包子",
+      ];
+      a2 = ["烧仙草", "普通奶茶", "芬达", "酸奶", "凉白开", "柠檬水", "可乐"];
+      a3 = [
+        "小龙虾",
+        "火锅",
+        "串串",
+        "大盘鸡",
+        "冰雪俏鸭头",
+        "麻辣烫",
+        "冒菜",
+        "麻辣香锅",
+        "烤鱼",
+        "大虾",
+        "肉蟹煲",
+        "寿司",
+        "自助烤肉",
+        "自助海鲜",
+        "自助牛排",
+      ];
+      a4 = [
+        "蛋糕",
+        "千层",
+        "面包",
+        "蛋挞",
+        "泡芙",
+        "马卡龙",
+        "布丁",
+        "鸡蛋仔",
+        "冰激凌",
+        "炒酸奶",
+        "芋圆",
+      ];
+      names = [
+        "烩面",
+        "棉花糖",
+        "重庆火锅",
+        "串串",
+        "麻辣烫",
+        "奶茶",
+        "酸辣粉",
+        "食堂",
+        "鸡蛋仔",
+        "煲仔饭",
+        "鱼香肉丝盖饭",
+        "鸡公煲",
+        "热干面",
+        "蒸饺+混沌",
+        "土豆粉",
+        "自助火锅",
+        "拌面",
+        "披萨",
+        "芬达",
+        "汉堡+炸鸡",
+        "烩菜",
+        "羊肉泡馍",
+        "煎饼果子",
+        "猪蹄",
+        "麻辣小龙虾",
+      ];
+
+      var ele = 0;
+      function getType() {
+        var type = document.querySelectorAll(".types");
+
+        for (var i = 0; i < type.length; i++) {
+          type[i].onmouseover = function () {
+            for (var j = 0; j < type.length; j++) {
+              type[j].className = "types";
+            }
+            this.className = "types checked";
+          };
+          // type[i].onmouseout = function () {
+          // 	for (var j = 0; j < type.length; j++) {
+          // 		type[j].className = 'types';
+          // 	}
+          // }
+          type[i].onclick = function () {
+            ele = this.getAttribute("data-index");
+          };
+        }
+      }
+
+      $(".button").toggle(
+        function () {
+          $(this).css({ color: "#f00" }).html("停止");
+          ydm = setInterval(function () {
+            // console.log(ele)
+            switch (ele) {
+              case "0":
+                index = Math.floor(Math.random() * names.length);
+                val = names[index];
+                $("#ko").css({ color: "#33FFFF" }).html(val);
+                break;
+              case "1":
+                index = Math.floor(Math.random() * a1.length);
+                val = a1[index];
+                $("#ko").css({ color: "#33FFFF" }).html(val);
+                break;
+              case "2":
+                index = Math.floor(Math.random() * a2.length);
+                val = a2[index];
+                $("#ko").css({ color: "#33FFFF" }).html(val);
+                break;
+              case "3":
+                index = Math.floor(Math.random() * a3.length);
+                val = a3[index];
+                $("#ko").css({ color: "#33FFFF" }).html(val);
+                break;
+              case "4":
+                index = Math.floor(Math.random() * a4.length);
+                val = a4[index];
+                $("#ko").css({ color: "#33FFFF" }).html(val);
+                break;
+            }
+          }, 50);
+        },
+
+        function () {
+          $(this).css({ color: "#fff" }).html("开始");
+          $("#ko").css({ color: "#00CC00" });
+          // 停止执行事件ydm
+          clearInterval(ydm);
+        }
+      );
+
+      $(function () {
+        getType();
+      });
+    </script>
+  </body>
+</html>

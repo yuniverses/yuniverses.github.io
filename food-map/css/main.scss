@@ -1,0 +1,362 @@
+/* 樣式集 VV*/
+$theme-bg-black: #000000;
+$theme-bg-gray: #101010;
+$theme-bg-gray2: rgb(29, 29, 29);
+// $theme-bg-gray:#161616;
+$theme-white: #dedede;
+$theme-sp-gray: #888888;
+$theme-sp2-gray: #cfcfcf;
+$theme-org: #f27852;
+.tit1 {
+  font-size: 16pt;
+  font-family: "Noto sans TC", sans-serif;
+}
+.tit2 {
+  font-size: 14px;
+  font-family: "Noto sans TC", sans-serif;
+}
+.tit3 {
+  font-size: 12px;
+  font-family: "Noto sans TC", sans-serif;
+}
+.blod {
+  font-weight: 600;
+}
+.p1 {
+  font-size: 10pt;
+  font-family: "Noto sans TC", sans-serif;
+}
+.p2 {
+  font-size: 8pt;
+  font-family: "Noto sans TC", sans-serif;
+  font-weight: 600;
+}
+#map {
+  height: 100%;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+  overflow-y: hidden;
+}
+.container {
+  position: relative;
+  z-index: 200;
+}
+canvas {
+  font-family: "Mochiy Pop P One", sans-serif;
+}
+
+//////////////////////
+
+#infoModal {
+  position: absolute;
+  border-radius: 10pt;
+  padding: 10pt;
+  button {
+    padding: 5pt 10pt;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  .left {
+    width: 40%;
+    height: 500pt;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .top {
+      margin-left: 10vw;
+      p {
+        margin-bottom: 15pt;
+      }
+    }
+    .bottom {
+      .tit1 {
+        letter-spacing: 8pt;
+        margin-bottom: 15pt;
+        color: $theme-sp2-gray;
+      }
+      margin-left: 10vw;
+    }
+  }
+  .right {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    #randombtn {
+      button {
+        background: none;
+        border: none;
+      }
+    }
+
+    #typesearch {
+      background-color: $theme-sp-gray;
+      padding: 8pt;
+      border: none;
+      border-radius: 10pt;
+      color: $theme-white;
+      button {
+        width: 10pt;
+      }
+      &::-webkit-input-placeholder {
+        color: $theme-sp2-gray;
+      }
+    }
+    .btnbox {
+      margin: 10pt;
+      width: 200pt;
+      height: 200pt;
+      padding: 30pt;
+      border-radius: 20pt;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-around;
+      background-color: $theme-bg-gray;
+      transition: all 2s;
+      h1 {
+        color: $theme-white;
+      }
+      p {
+        color: $theme-sp-gray;
+      }
+      img {
+        transition: all 0.5s;
+      }
+      .searchbar {
+        display: flex;
+        flex-direction: row;
+        background-color: $theme-sp-gray;
+        padding: 2pt;
+        border: none;
+        border-radius: 10pt;
+        align-items: center;
+        button {
+          border: none;
+          border-radius: 10pt;
+          background: none;
+          color: $theme-white;
+        }
+      }
+      &:hover {
+        transition: all 0.5s;
+        background-color: #1e1e1e;
+        .star {
+          transition: all 0.5s;
+          scale: 1.2;
+          transform: rotate(180deg);
+        }
+      }
+      .tag {
+        border: none;
+        padding: 5pt;
+        border-radius: 5pt;
+        background-color: $theme-sp-gray;
+        color: $theme-white;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.loding {
+  width: 100vw;
+  height: 100vh;
+  background-color: $theme-bg-black;
+  display: flex;
+  align-items: center;
+}
+
+#result {
+  width: 100vw;
+  height: 100vh;
+  background-color: $theme-bg-black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .h {
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    height: 75vh;
+  }
+}
+
+#restaurantLi {
+  height: 100%;
+  background-color: $theme-bg-gray;
+  width: 300pt;
+  padding: 0 20pt;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 20pt;
+
+  img {
+    width: 150pt;
+    height: 150pt;
+    object-fit: cover;
+    border-radius: 20pt;
+    margin-right: 20pt;
+    margin-top: 60pt;
+  }
+  .list {
+    width: 130pt;
+    height: 150pt;
+    margin-top: 60pt;
+    display: flex;
+    flex-direction: column;
+    padding: 10pt 0;
+    justify-content: space-around;
+    h1 {
+      height: fit-content;
+      color: $theme-white;
+      font-size: 15pt;
+      line-height: 20pt;
+    }
+    .list2 {
+      display: flex;
+      flex-direction: row;
+      p {
+        height: fit-content;
+        width: 50%;
+      }
+      a {
+        height: fit-content;
+      }
+      img {
+        margin: 0;
+        width: 15pt;
+        height: 15pt;
+      }
+    }
+  }
+
+  .tit {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 300pt;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: $theme-bg-gray;
+    padding: 20pt 0;
+    h1 {
+      font-size: 20pt;
+      color: $theme-white;
+    }
+    a {
+      color: $theme-sp-gray;
+    }
+  }
+}
+
+.randomLi {
+  width: 300pt;
+  background-color: $theme-bg-gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 25pt;
+  margin-right: 5vw;
+
+  .foodimg {
+    margin-bottom: 10pt;
+    width: 280pt;
+    height: 280pt;
+    object-fit: cover;
+    border-radius: 20pt;
+  }
+  h1 {
+    color: $theme-white;
+    display: flex;
+    flex-direction: row;
+    font-size: 20pt;
+    font-weight: 800;
+    flex-wrap: wrap;
+    margin: 20pt 0;
+  }
+  span {
+    color: $theme-org;
+    margin: 0;
+    text-decoration: underline;
+  }
+  .info {
+    background-color: $theme-bg-gray2;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10pt 20pt;
+    border-radius: 15pt;
+    .star {
+      background-color: $theme-bg-gray;
+      padding: 8pt;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 15pt;
+    }
+    .infoleft {
+      p {
+        color: $theme-white;
+      }
+      a {
+        color: $theme-bg-black;
+        background-color: $theme-sp-gray;
+        padding: 3pt 6pt;
+        border-radius: 10pt;
+      }
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: space-between;
+    }
+  }
+  .resultbtn {
+    margin-top: 30pt;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .redobtn {
+      cursor: pointer;
+      background-color: $theme-org;
+      width: 80%;
+      height: 40pt;
+      border: none;
+      border-radius: 10pt;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        color: $theme-white;
+        font-size: large;
+        margin-left: 15pt;
+      }
+    }
+    .sharebtn {
+      cursor: pointer;
+      border: none;
+      width: 15%;
+      background: none;
+      margin-left: 5%;
+    }
+  }
+}
