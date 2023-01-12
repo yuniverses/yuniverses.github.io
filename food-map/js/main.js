@@ -81,6 +81,130 @@ function gettingPosition() {
     alert("Does not support positioning!");
   }
 }
+
+function errorCallback(error) {
+  alert(error.message); //error.code
+  if (error.message === "User denied Geolocation") {
+    var address = prompt("無法獲得你的定位啦/請輸入你的所在地點", "台藝大");
+    var geocoder;
+    var map;
+
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(-34.397, 150.644);
+    var mapOptions = {
+      zoom: 8,
+      center: latlng,
+    };
+    map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+    geocoder.geocode({ address: address }, function (results, status) {
+      if (status == "OK") {
+        console.log(results[0].geometry.location.lat().toFixed(4));
+        console.log(results[0].geometry.location.lng().toFixed(4));
+        map.setCenter({
+          lat: results[0].geometry.location.lat(),
+          lng: results[0].geometry.location.lng(),
+        });
+
+        var testInput = document.getElementById("typesearch");
+        var restrentValue = testInput.value;
+        keyword = restrentValue;
+        xhr.open(
+          "get",
+          "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" +
+            results[0].geometry.location.lat().toFixed(4) +
+            "," +
+            results[0].geometry.location.lng().toFixed(4) +
+            "&radius=1000&type=restaurant&keyword=" +
+            keyword +
+            "&language=zh-TW&key=AIzaSyAdPPyMZ3i9lWkTdxHMndofNI4FxLZa8kU",
+          true
+        );
+        console.log(xhr);
+        xhr.send();
+        xhr.onreadystatechange = function () {
+          if (this.readyState === 0) {
+            alert("請前往cors-anywhere開啟cors權限。");
+          }
+          if (this.readyState === 4 && this.status === 200) {
+            var data = JSON.parse(this.responseText);
+            var newArray = [data];
+            console.log(data);
+            console.log(data.results);
+            console.log("筆數有幾筆");
+            total_li = data.results.length;
+            console.log(total_li);
+            let x = Math.floor(Math.random() * data.results.length);
+            console.log(data.results[x]);
+
+            document.getElementById("randomLi").innerHTML =
+              '<img class="foodimg" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=' +
+              data.results[x].photos[0].photo_reference +
+              '&key=AIzaSyAdPPyMZ3i9lWkTdxHMndofNI4FxLZa8kU"/>' +
+              "<h1>就吃<span>" +
+              data.results[x].name +
+              '</span>吧～</h1><div class="info"><div class="infoleft"><div><p>' +
+              data.results[x].vicinity +
+              '</p></div><a href="https://www.google.com.tw/maps/place/' +
+              data.results[x].vicinity +
+              '">立即前往</a>' +
+              "<div><p>" +
+              data.results[x].price_level +
+              '</p></div><div><p id="open_now">' +
+              data.results[x].opening_hours.open_now +
+              '</p></div></div><div class="inforight"><div class="star"><img src="./img/Star3.svg" alt="" /><p>' +
+              data.results[x].rating +
+              '</p></div></div></div><div class="resultbtn"><button class="redobtn" id="redobtn" onclick="javascript:window.location.reload()"> <img src="./img/redo.svg" alt="" /><p>redo</p></button><button class="sharebtn" id="sharebtn"><img src="./img/share.svg" alt="" /></button></div>';
+
+            "<h1>" +
+              data.results[x].name +
+              "</h1>" +
+              "<p>" +
+              data.results[x].rating +
+              "</p>" +
+              '<a href="https://www.google.com.tw/maps/place/' +
+              data.results[x].vicinity +
+              '">立即前往</a>';
+            // Loop over the array
+            for (i = 0; i < total_li; i++) {
+              // Put the whole row into your table
+              // console.log(data.results[i].name);
+
+              document.getElementById("loding").style.display = "none";
+              //搜尋結果
+              total_photos = data.results[i].photos.length;
+              // console.log(total_photos);
+              for (p = 0; p < total_photos; p++) {
+                console.log(data.results[i].photos[p].photo_reference);
+                document.getElementById("restaurantLi").innerHTML +=
+                  '<img src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=' +
+                  data.results[i].photos[p].photo_reference +
+                  '&key=AIzaSyAdPPyMZ3i9lWkTdxHMndofNI4FxLZa8kU"/>';
+              }
+              document.getElementById("restaurantLi").innerHTML +=
+                '<div class="list">' +
+                "<h1>" +
+                data.results[i].name +
+                "</h1>" +
+                '<div class="list2">' +
+                '<img src="./img/Star4.svg" alt="" /><p>' +
+                data.results[i].rating +
+                "</p>" +
+                '<a href="https://www.google.com.tw/maps/place/' +
+                data.results[i].vicinity +
+                '">立即前往</a>' +
+                "<div>" +
+                "</div>";
+            }
+          }
+        };
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+}
+
 function successCallback(position) {
   map.setCenter({
     lat: position.coords.latitude,
@@ -133,7 +257,7 @@ function successCallback(position) {
         data.results[x].opening_hours.open_now +
         '</p></div></div><div class="inforight"><div class="star"><img src="./img/Star3.svg" alt="" /><p>' +
         data.results[x].rating +
-        '</p></div></div></div><div class="resultbtn"><button class="redobtn" id="redobtn" onclick="javascript:window.location.reload()"> <img src="./img/redo.svg" alt="" /><p>redo</p></button><button class="sharebtn" id="sharebtn" onclick="screenshot()"><img src="./img/share.svg" alt="" /></button></div>';
+        '</p></div></div></div><div class="resultbtn"><button class="redobtn" id="redobtn" onclick="javascript:window.location.reload()"> <img src="./img/redo.svg" alt="" /><p>redo</p></button><button class="sharebtn" id="sharebtn"><img src="./img/share.svg" alt="" /></button></div>';
 
       "<h1>" +
         data.results[x].name +
@@ -179,10 +303,6 @@ function successCallback(position) {
   };
 }
 
-function errorCallback(error) {
-  alert(error.message); //error.code
-}
-
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 15,
@@ -200,16 +320,3 @@ var dropdown = new IconicDropdown({
 });
 
 dropdown.init();
-
-function screenshot() {
-  html2canvas(document.getElementById("randomLi")).then(function (canvas) {
-    document.body.appendChild(canvas);
-    canvas.style.zIndex = "999";
-    var a = document.createElement("a");
-    a.href = canvas
-      .toDataURL("image/jpeg")
-      .replace("image/jpeg", "image/octet-stream");
-    a.download = "image.jpg";
-    a.click();
-  });
-}
