@@ -54,12 +54,40 @@ canvas {
 #infoModal {
   position: absolute;
   border-radius: 10pt;
-  padding: 10pt;
+  padding: 15pt;
+}
+@media (max-width: 800px) {
+  #infoModal {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+}
+#infoModal div {
+  display: flex;
+}
+#infoModal div span {
+  cursor: pointer;
+}
+#infoModal div button {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 0;
+  border: none;
+  background: none;
+}
+#infoModal div img {
+  width: 20pt;
 }
 #infoModal button {
+  margin-top: 10pt;
   padding: 5pt 10pt;
+  width: 100%;
+  border: none;
+  background-color: #f27852;
+  border-radius: 20pt;
 }
-
 .main {
   display: flex;
   flex-direction: row;
@@ -68,12 +96,22 @@ canvas {
   width: 100vw;
   height: 100vh;
 }
+@media (max-width: 800px) {
+  .main {
+    flex-direction: column;
+  }
+}
 .main .left {
   width: 40%;
   height: 500pt;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media (max-width: 800px) {
+  .main .left {
+    width: 80%;
+  }
 }
 .main .left .top {
   margin-left: 10vw;
@@ -192,6 +230,13 @@ canvas {
   height: fit-content;
   height: 75vh;
 }
+@media (max-width: 800px) {
+  #result .h {
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 80vh;
+  }
+}
 
 #restaurantLi {
   height: 100%;
@@ -203,6 +248,13 @@ canvas {
   flex-direction: row;
   flex-wrap: wrap;
   border-radius: 20pt;
+}
+@media (max-width: 800px) {
+  #restaurantLi {
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 80vh;
+  }
 }
 #restaurantLi img {
   width: 150pt;
@@ -239,6 +291,7 @@ canvas {
   height: -moz-fit-content;
   height: fit-content;
   width: 50%;
+  color: #dedede;
 }
 #restaurantLi .list .list2 a {
   height: -webkit-fit-content;
@@ -265,6 +318,7 @@ canvas {
   color: #dedede;
 }
 #restaurantLi .tit a {
+  cursor: pointer;
   color: #888888;
 }
 
@@ -286,6 +340,7 @@ canvas {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 20pt;
+  display: flex;
 }
 .randomLi h1 {
   color: #dedede;

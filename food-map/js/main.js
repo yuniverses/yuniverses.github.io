@@ -115,6 +115,7 @@ function successCallback(position) {
       console.log(total_li);
       let x = Math.floor(Math.random() * data.results.length);
       console.log(data.results[x]);
+
       document.getElementById("randomLi").innerHTML =
         '<img class="foodimg" src="https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=' +
         data.results[x].photos[0].photo_reference +
@@ -132,7 +133,7 @@ function successCallback(position) {
         data.results[x].opening_hours.open_now +
         '</p></div></div><div class="inforight"><div class="star"><img src="./img/Star3.svg" alt="" /><p>' +
         data.results[x].rating +
-        '</p></div></div></div><div class="resultbtn"><button class="redobtn" id="redobtn" onclick="javascript:window.location.reload()"> <img src="./img/redo.svg" alt="" /><p>redo</p></button><button class="sharebtn" id="sharebtn"><img src="./img/share.svg" alt="" /></button></div>';
+        '</p></div></div></div><div class="resultbtn"><button class="redobtn" id="redobtn" onclick="javascript:window.location.reload()"> <img src="./img/redo.svg" alt="" /><p>redo</p></button><button class="sharebtn" id="sharebtn" onclick="screenshot()"><img src="./img/share.svg" alt="" /></button></div>';
 
       "<h1>" +
         data.results[x].name +
@@ -177,6 +178,7 @@ function successCallback(position) {
     }
   };
 }
+
 function errorCallback(error) {
   alert(error.message); //error.code
 }
@@ -198,3 +200,16 @@ var dropdown = new IconicDropdown({
 });
 
 dropdown.init();
+
+function screenshot() {
+  html2canvas(document.getElementById("randomLi")).then(function (canvas) {
+    document.body.appendChild(canvas);
+    canvas.style.zIndex = "999";
+    var a = document.createElement("a");
+    a.href = canvas
+      .toDataURL("image/jpeg")
+      .replace("image/jpeg", "image/octet-stream");
+    a.download = "image.jpg";
+    a.click();
+  });
+}

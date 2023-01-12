@@ -55,13 +55,43 @@ canvas {
 #infoModal {
   position: absolute;
   border-radius: 10pt;
-  padding: 10pt;
+  padding: 15pt;
+  @media (max-width: 800px) {
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  div {
+    display: flex;
+    span {
+      cursor: pointer;
+    }
+    button {
+      width: fit-content;
+      padding: 0;
+      border: none;
+      background: none;
+    }
+    img {
+      width: 20pt;
+    }
+  }
   button {
+    margin-top: 10pt;
     padding: 5pt 10pt;
+    width: 100%;
+    border: none;
+    background-color: $theme-org;
+    border-radius: 20pt;
+  }
+  img {
   }
 }
 
 .main {
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -69,6 +99,9 @@ canvas {
   width: 100vw;
   height: 100vh;
   .left {
+    @media (max-width: 800px) {
+      width: 80%;
+    }
     width: 40%;
     height: 500pt;
     display: flex;
@@ -188,6 +221,11 @@ canvas {
   align-items: center;
   justify-content: center;
   .h {
+    @media (max-width: 800px) {
+      flex-direction: column;
+      overflow-y: scroll;
+      height: 80vh;
+    }
     display: flex;
     flex-direction: row;
     height: fit-content;
@@ -196,6 +234,11 @@ canvas {
 }
 
 #restaurantLi {
+  @media (max-width: 800px) {
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 80vh;
+  }
   height: 100%;
   background-color: $theme-bg-gray;
   width: 300pt;
@@ -234,6 +277,7 @@ canvas {
       p {
         height: fit-content;
         width: 50%;
+        color: $theme-white;
       }
       a {
         height: fit-content;
@@ -260,6 +304,7 @@ canvas {
       color: $theme-white;
     }
     a {
+      cursor: pointer;
       color: $theme-sp-gray;
     }
   }
@@ -282,6 +327,7 @@ canvas {
     height: 280pt;
     object-fit: cover;
     border-radius: 20pt;
+    display: flex;
   }
   h1 {
     color: $theme-white;
