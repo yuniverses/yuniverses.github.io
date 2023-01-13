@@ -83,7 +83,7 @@ function gettingPosition() {
 }
 
 function errorCallback(error) {
-  alert(error.message); //error.code
+  // alert(error.message); //error.code
   if (error.message === "User denied Geolocation") {
     var address = prompt("無法獲得你的定位啦/請輸入你的所在地點", "台藝大");
     var geocoder;
