@@ -123,10 +123,13 @@ function errorCallback(error) {
         console.log(xhr);
         xhr.send();
         xhr.onreadystatechange = function () {
-          if (this.readyState === 0) {
+          if (this.readyState === 4 && this.status === 403) {
             alert("請前往cors-anywhere開啟cors權限。");
+            window.open("https://cors-anywhere.herokuapp.com/corsdemo");
+            location.reload();
           }
           if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("infoModal").style.display = "none";
             var data = JSON.parse(this.responseText);
             var newArray = [data];
             console.log(data);
@@ -229,7 +232,13 @@ function successCallback(position) {
   console.log(xhr);
   xhr.send();
   xhr.onreadystatechange = function () {
+    if (this.readyState === 4 && this.status === 403) {
+      alert("請前往cors-anywhere開啟cors權限。");
+      window.open("https://cors-anywhere.herokuapp.com/corsdemo");
+      location.reload();
+    }
     if (this.readyState === 4 && this.status === 200) {
+      document.getElementById("infoModal").style.display = "none";
       var data = JSON.parse(this.responseText);
       var newArray = [data];
       console.log(data);
@@ -251,9 +260,9 @@ function successCallback(position) {
         '</p></div><a href="https://www.google.com.tw/maps/place/' +
         data.results[x].vicinity +
         '">立即前往</a>' +
-        "<div><p>" +
+        "<div><p>價格等級：</p><p>" +
         data.results[x].price_level +
-        '</p></div><div><p id="open_now">' +
+        '<p>/3</p></p></div><div><p>營業狀態：</p><p id="open_now">' +
         data.results[x].opening_hours.open_now +
         '</p></div></div><div class="inforight"><div class="star"><img src="./img/Star3.svg" alt="" /><p>' +
         data.results[x].rating +

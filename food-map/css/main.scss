@@ -358,14 +358,21 @@ canvas {
       flex-direction: column;
       align-items: center;
       border-radius: 15pt;
+      p {
+        color: #f4bd25;
+        font-weight: 700;
+      }
     }
     .infoleft {
+      div {
+        display: flex;
+      }
       p {
         color: $theme-white;
       }
       a {
         color: $theme-bg-black;
-        background-color: $theme-sp-gray;
+        background-color: $theme-org;
         padding: 3pt 6pt;
         border-radius: 10pt;
       }

@@ -373,18 +373,25 @@ canvas {
   align-items: center;
   border-radius: 15pt;
 }
+.randomLi .info .star p {
+  color: #f4bd25;
+  font-weight: 700;
+}
 .randomLi .info .infoleft {
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
 }
+.randomLi .info .infoleft div {
+  display: flex;
+}
 .randomLi .info .infoleft p {
   color: #dedede;
 }
 .randomLi .info .infoleft a {
   color: #000000;
-  background-color: #888888;
+  background-color: #f27852;
   padding: 3pt 6pt;
   border-radius: 10pt;
 }
