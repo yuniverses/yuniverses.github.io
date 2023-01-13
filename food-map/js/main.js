@@ -151,9 +151,9 @@ function errorCallback(error) {
               '</p></div><a href="https://www.google.com.tw/maps/place/' +
               data.results[x].vicinity +
               '">立即前往</a>' +
-              "<div><p>" +
+              "<div><p>價格等級：</p><p>" +
               data.results[x].price_level +
-              '</p></div><div><p id="open_now">' +
+              '<p>/3</p></p></div><div><p>營業狀態：</p><p id="open_now">' +
               data.results[x].opening_hours.open_now +
               '</p></div></div><div class="inforight"><div class="star"><img src="./img/Star3.svg" alt="" /><p>' +
               data.results[x].rating +
